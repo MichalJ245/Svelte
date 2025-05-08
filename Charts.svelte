@@ -1,11 +1,10 @@
 <script lang="ts">
-    import { twMerge } from 'tailwind-merge';
-	        type bar =
-                {
-		            gain: number;
-		            loss?: number;
-		            active: boolean;
-	            }
+	import { twMerge } from 'tailwind-merge';
+	type bar = {
+		gain: number;
+		loss?: number;
+		active: boolean;
+	};
 	let {
 		metrics,
 		title,
