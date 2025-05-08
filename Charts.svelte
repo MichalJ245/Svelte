@@ -1,10 +1,9 @@
 <script lang="ts">
-    type bar = 
-    {
-        gain: number,
-        loss: number,
-        active: boolean
-    }
+	type bar = {
+		gain: number;
+		loss: number;
+		active: boolean;
+	};
 	let {
 		metrics,
 		title,
@@ -33,7 +32,10 @@
 			{#each metrics as bar}
 				<div class="flex flex-col align-middle mt-0">
 					{#if bar.active}
-						<div class="w-3 rounded-xl mx-2 {positiveBarActiveClass}" style="height: {bar.gain}px"></div>
+						<div
+							class="w-3 rounded-xl mx-2 {positiveBarActiveClass}"
+							style="height: {bar.gain}px"
+						></div>
 					{:else}
 						<div class="w-3 rounded-xl mx-2 {barColor}" style="height: {bar.gain}px"></div>
 					{/if}
@@ -42,21 +44,18 @@
 			{/each}
 		</div>
 		<div class="flex flex-row items-start max-h-screen">
-				{#each metrics as bar}
-					<div class="flex flex-col align-middle mt-0">
-						{#if bar.active}
-							<div
-								class="w-3 rounded-xl mx-2 {negativeBarActiveClass} h-auto"
-								style="height: {bar.loss}px"
-							></div>
-						{:else}
-							<div
-								class="w-3 rounded-xl mx-2 {barColor} h-auto"
-								style="height: {bar.loss}px"
-							></div>
-						{/if}
-					</div>
-				{/each}
+			{#each metrics as bar}
+				<div class="flex flex-col align-middle mt-0">
+					{#if bar.active}
+						<div
+							class="w-3 rounded-xl mx-2 {negativeBarActiveClass} h-auto"
+							style="height: {bar.loss}px"
+						></div>
+					{:else}
+						<div class="w-3 rounded-xl mx-2 {barColor} h-auto" style="height: {bar.loss}px"></div>
+					{/if}
+				</div>
+			{/each}
 		</div>
 	</div>
 </div>
