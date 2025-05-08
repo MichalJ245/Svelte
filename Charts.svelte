@@ -1,13 +1,16 @@
 <script lang="ts">
-	type bar = {
-		gain: number;
-		loss: number;
-		active: boolean;
-	};
+    import { twMerge } from 'tailwind-merge';
+	        type bar =
+                {
+		            gain: number;
+		            loss?: number;
+		            active: boolean;
+	            }
 	let {
 		metrics,
 		title,
 		value,
+        hasNegativeValues,
 		positiveBarActiveClass = 'bg-yellow-500',
 		negativeBarActiveClass = 'bg-red-200',
 		barColor
@@ -15,6 +18,7 @@
 		metrics: Array<bar>;
 		title: string;
 		value: string;
+        hasNegativeValues: boolean;
 		positiveBarActiveClass: string;
 		negativeBarActiveClass: string;
 		barColor: string;
@@ -31,29 +35,22 @@
 		<div class="flex flex-row items-end max-h-screen">
 			{#each metrics as bar}
 				<div class="flex flex-col align-middle mt-0">
-					{#if bar.active}
-						<div
-							class="w-3 rounded-xl mx-2 {positiveBarActiveClass}"
-							style="height: {bar.gain}px"
-						></div>
-					{:else}
-						<div class="w-3 rounded-xl mx-2 {barColor}" style="height: {bar.gain}px"></div>
-					{/if}
-					<div class="w-3 mx-2 h-2"></div>
+					<div
+						class="w-3 rounded-xl mx-2 {twMerge(bar.active ? positiveBarActiveClass : barColor)}"
+						style="height: {bar.gain}px"
+					></div>
 				</div>
 			{/each}
 		</div>
 		<div class="flex flex-row items-start max-h-screen">
 			{#each metrics as bar}
 				<div class="flex flex-col align-middle mt-0">
-					{#if bar.active}
-						<div
-							class="w-3 rounded-xl mx-2 {negativeBarActiveClass} h-auto"
-							style="height: {bar.loss}px"
-						></div>
-					{:else}
-						<div class="w-3 rounded-xl mx-2 {barColor} h-auto" style="height: {bar.loss}px"></div>
-					{/if}
+					<div
+						class="w-3 rounded-xl mx-2 {twMerge(
+							bar.active ? negativeBarActiveClass : barColor
+						)} h-auto"
+						style="height: {bar.loss}px"
+					></div>
 				</div>
 			{/each}
 		</div>

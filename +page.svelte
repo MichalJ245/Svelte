@@ -1,20 +1,22 @@
 <script>
 	import Charts from './Charts.svelte';
+    import { twMerge } from 'tailwind-merge'
 </script>
 
 <Charts
 	metrics={[
-		{ gain: 35, loss: 0, active: false },
-		{ gain: 69, loss: 0, active: true },
-		{ gain: 12, loss: 0, active: true },
-		{ gain: 94, loss: 0, active: false },
-		{ gain: 49, loss: 0, active: false },
-		{ gain: 67, loss: 0, active: true },
-		{ gain: 18, loss: 0, active: true },
-		{ gain: 30, loss: 0, active: false }
+		{ gain: 35, active: false },
+		{ gain: 69, active: true },
+		{ gain: 12, active: true },
+		{ gain: 94, active: false },
+		{ gain: 49, active: false },
+		{ gain: 67, active: true },
+		{ gain: 18, active: true },
+		{ gain: 30, active: false }
 	]}
 	title="Engagement"
 	value="+46%"
+    hasNegativeValues={false}
 	positiveBarActiveClass="bg-yellow-500"
 	negativeBarActiveClass="bg-red-200"
 	barColor="bg-gray-300"
@@ -32,6 +34,7 @@
 	]}
 	title="Followers"
 	value="+25%"
+    hasNegativeValues={true}
 	positiveBarActiveClass="bg-green-600"
 	negativeBarActiveClass="bg-red-200"
 	barColor="bg-gray-300"
