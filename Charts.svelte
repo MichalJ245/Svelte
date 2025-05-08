@@ -10,7 +10,6 @@
 		metrics,
 		title,
 		value,
-        hasNegativeValues,
 		positiveBarActiveClass = 'bg-yellow-500',
 		negativeBarActiveClass = 'bg-red-200',
 		barColor
@@ -18,7 +17,6 @@
 		metrics: Array<bar>;
 		title: string;
 		value: string;
-        hasNegativeValues: boolean;
 		positiveBarActiveClass: string;
 		negativeBarActiveClass: string;
 		barColor: string;

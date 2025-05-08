@@ -1,6 +1,5 @@
 <script>
 	import Charts from './Charts.svelte';
-    import { twMerge } from 'tailwind-merge'
 </script>
 
 <Charts
@@ -16,7 +15,6 @@
 	]}
 	title="Engagement"
 	value="+46%"
-    hasNegativeValues={false}
 	positiveBarActiveClass="bg-yellow-500"
 	negativeBarActiveClass="bg-red-200"
 	barColor="bg-gray-300"
@@ -34,7 +32,6 @@
 	]}
 	title="Followers"
 	value="+25%"
-    hasNegativeValues={true}
 	positiveBarActiveClass="bg-green-600"
 	negativeBarActiveClass="bg-red-200"
 	barColor="bg-gray-300"
