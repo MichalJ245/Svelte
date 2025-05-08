@@ -1,63 +1,62 @@
 <script lang="ts">
-    type multitype = (number | boolean)[][];
+    type bar = 
+    {
+        gain: number,
+        loss: number,
+        active: boolean
+    }
 	let {
-		bars,
+		metrics,
 		title,
 		value,
-        do_neg_bars,
-		negative_bars,
-		active_col_pos,
-		active_col_neg,
-		nonactive_col
+		positiveBarActiveClass = 'bg-yellow-500',
+		negativeBarActiveClass = 'bg-red-200',
+		barColor
 	}: {
-		bars: multitype;
+		metrics: Array<bar>;
 		title: string;
 		value: string;
-        do_neg_bars: boolean;
-		negative_bars: multitype;
-		active_col_pos: string;
-		active_col_neg: string;
-		nonactive_col: string;
+		positiveBarActiveClass: string;
+		negativeBarActiveClass: string;
+		barColor: string;
 	} = $props();
 </script>
 
 <div
 	id="main"
-	class="max-w-max max-h-screen flex flex-col mx-auto shadow-2xl rounded-[50px] p-10 border-solid border-1 border-gray-200 outline-10 outline-white"
+	class="max-w-max max-h-screen flex flex-col mx-auto shadow-2xl rounded-[50px] p-10 border-solid border-1 border-gray-200 outline-10 outline-white mb-10"
 >
 	<h1 class="font-bold text-2xl text-left">{title}</h1>
 	<p class="text-left p-1 bg-green-100 rounded-xl w-14 text-green-700 font-semibold">{value}</p>
 	<div id="wykres" class="flex flex-col max-h-screen">
 		<div class="flex flex-row items-end max-h-screen">
-			{#each bars as bar}
+			{#each metrics as bar}
 				<div class="flex flex-col align-middle mt-0">
-					{#if bar[1]}
-						<div class="w-3 rounded-xl mx-2 {active_col_pos}" style="height: {bar[0]}px"></div>
+					{#if bar.active}
+						<div class="w-3 rounded-xl mx-2 {positiveBarActiveClass}" style="height: {bar.gain}px"></div>
 					{:else}
-						<div class="w-3 rounded-xl mx-2 {nonactive_col}" style="height: {bar[0]}px"></div>
+						<div class="w-3 rounded-xl mx-2 {barColor}" style="height: {bar.gain}px"></div>
 					{/if}
 					<div class="w-3 mx-2 h-2"></div>
 				</div>
 			{/each}
 		</div>
 		<div class="flex flex-row items-start max-h-screen">
-			{#if do_neg_bars}
-				{#each negative_bars as bar}
+				{#each metrics as bar}
 					<div class="flex flex-col align-middle mt-0">
-						{#if bar[1]}
+						{#if bar.active}
 							<div
-								class="w-3 rounded-xl mx-2 {active_col_neg} h-auto"
-								style="height: {bar[0]}px"
+								class="w-3 rounded-xl mx-2 {negativeBarActiveClass} h-auto"
+								style="height: {bar.loss}px"
 							></div>
 						{:else}
 							<div
-								class="w-3 rounded-xl mx-2 {nonactive_col} h-auto"
-								style="height: {bar[0]}px"
+								class="w-3 rounded-xl mx-2 {barColor} h-auto"
+								style="height: {bar.loss}px"
 							></div>
 						{/if}
 					</div>
 				{/each}
-			{/if}
 		</div>
 	</div>
 </div>
