@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
-	type Bar = {
+	type Bar ={
 		gain: number;
 		loss?: number;
 		positiveActive: boolean;
 		negativeActive?: boolean;
-	};
+	}
 	let {
 		metrics,
 		title,
@@ -43,15 +43,19 @@
 				></div>
 			{/each}
 		</div>
-		{#if metrics.some((bar) => 'loss' in bar && bar.loss !== undefined)}
+		{#if metrics.some((bar) => 'loss' in bar && typeof bar.loss === 'number')}
 			<div class="flex flex-row items-start max-h-screen">
 				{#each metrics as bar}
-					<div
-						class="flex flex-col align-middle mt-0 w-3 rounded-xl mx-2 {twMerge(
-							bar.negativeActive ? negativeBarActiveClass : barColor
-						)} h-auto"
-						style="height: {bar.loss}px"
-					></div>
+					{#if typeof bar.loss === 'number' && bar.loss > 0}
+						<div
+							class="mt-0 w-3 rounded-xl mx-2 {twMerge(
+								bar.negativeActive ? negativeBarActiveClass : barColor
+							)} h-auto"
+							style="height: {bar.loss}px"
+						></div>
+					{:else}
+						<div class="w-3 mt-0 mx-2"></div>
+					{/if}
 				{/each}
 			</div>
 		{/if}
