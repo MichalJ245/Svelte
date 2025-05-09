@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
-	type Bar ={
+	type Bar = {
 		gain: number;
 		loss?: number;
 		positiveActive: boolean;
 		negativeActive?: boolean;
-	}
+	};
 	let {
 		metrics,
 		title,
@@ -13,7 +13,8 @@
 		positiveBarActiveClass = 'bg-yellow-500',
 		negativeBarActiveClass = 'bg-red-200',
 		barColor,
-		rotateDegree = 0
+		rotateDegree = 0,
+		doNegativeValues
 	}: {
 		metrics: Array<Bar>;
 		title: string;
@@ -22,6 +23,7 @@
 		negativeBarActiveClass: string;
 		barColor: string;
 		rotateDegree?: number;
+		doNegativeValues: boolean;
 	} = $props();
 </script>
 
@@ -43,19 +45,15 @@
 				></div>
 			{/each}
 		</div>
-		{#if metrics.some((bar) => 'loss' in bar && typeof bar.loss === 'number')}
+		{#if doNegativeValues}
 			<div class="flex flex-row items-start max-h-screen">
 				{#each metrics as bar}
-					{#if typeof bar.loss === 'number' && bar.loss > 0}
-						<div
-							class="mt-0 w-3 rounded-xl mx-2 {twMerge(
-								bar.negativeActive ? negativeBarActiveClass : barColor
-							)} h-auto"
-							style="height: {bar.loss}px"
-						></div>
-					{:else}
-						<div class="w-3 mt-0 mx-2"></div>
-					{/if}
+					<div
+						class="mt-0 w-3 rounded-xl mx-2 {twMerge(
+							bar.negativeActive ? negativeBarActiveClass : barColor
+						)} h-auto"
+						style="height: {bar.loss}px"
+					></div>
 				{/each}
 			</div>
 		{/if}

@@ -11,7 +11,7 @@
 		{ gain: 49, positiveActive: false },
 		{ gain: 67, positiveActive: true },
 		{ gain: 18, positiveActive: true },
-		{ gain: 30, positiveActive: false },
+		{ gain: 30, positiveActive: false }
 	]}
 	title="Engagement"
 	value="+46%"
@@ -19,16 +19,17 @@
 	negativeBarActiveClass="bg-red-800"
 	barColor="bg-gray-300"
 	rotateDegree={30}
+	doNegativeValues={false}
 />
 <Charts
 	metrics={[
 		{ gain: 95, loss: 38, positiveActive: true, negativeActive: false },
 		{ gain: 34, loss: 29, positiveActive: true, negativeActive: false },
 		{ gain: 39, loss: 12, positiveActive: false, negativeActive: true },
-		{ gain: 84, positiveActive: true },
+		{ gain: 84, loss: 3, positiveActive: true, negativeActive: false },
 		{ gain: 56, loss: 83, positiveActive: false, negativeActive: false },
 		{ gain: 84, loss: 11, positiveActive: true, negativeActive: true },
-		{ gain: 18, positiveActive: false },
+		{ gain: 18, loss: 5, positiveActive: false, negativeActive: true },
 		{ gain: 60, loss: 67, positiveActive: false, negativeActive: false }
 	]}
 	title="Followers"
@@ -37,4 +38,5 @@
 	negativeBarActiveClass="bg-red-400"
 	barColor="bg-gray-300"
 	rotateDegree={-20}
+	doNegativeValues={true}
 />
