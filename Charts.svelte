@@ -23,6 +23,17 @@
 		barColor: string;
 		rotateDegree?: number;
 	} = $props();
+	function checkNegative(eachBar: bar): boolean
+	{
+		if(typeof eachBar.loss === 'number')
+			{
+				return true;
+			}
+		else
+			{
+				return false;
+			}
+	}
 </script>
 
 <div
@@ -43,7 +54,7 @@
 				></div>
 			{/each}
 		</div>
-		{#if typeof metrics[0].loss === 'number'}
+		{#if metrics.some(checkNegative)}
 			<div class="flex flex-row items-start max-h-screen">
 				{#each metrics as bar}
 					<div

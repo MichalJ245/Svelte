@@ -36,5 +36,5 @@
 	positiveBarActiveClass="bg-green-600"
 	negativeBarActiveClass="bg-red-400"
 	barColor="bg-gray-300"
-	rotateDegree={-30}
+	rotateDegree={-20}
 />
