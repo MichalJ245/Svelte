@@ -3,7 +3,8 @@
 	type bar = {
 		gain: number;
 		loss?: number;
-		active: boolean;
+		positiveActive: boolean;
+		negativeActive?: boolean;
 	};
 	let {
 		metrics,
@@ -11,7 +12,8 @@
 		value,
 		positiveBarActiveClass = 'bg-yellow-500',
 		negativeBarActiveClass = 'bg-red-200',
-		barColor
+		barColor,
+		rotateDegree = 0
 	}: {
 		metrics: Array<bar>;
 		title: string;
@@ -19,37 +21,39 @@
 		positiveBarActiveClass: string;
 		negativeBarActiveClass: string;
 		barColor: string;
+		rotateDegree?: number;
 	} = $props();
 </script>
 
 <div
 	id="main"
-	class="max-w-max max-h-screen flex flex-col mx-auto shadow-2xl rounded-[50px] p-10 border-solid border-1 border-gray-200 outline-10 outline-white mb-10"
+	class="max-w-max max-h-screen flex flex-col mx-auto shadow-2xl rounded-[50px] p-10 border-solid border-1 border-gray-200 outline-10 outline-white mb-40"
+	style="transform:rotate({rotateDegree}deg);"
 >
 	<h1 class="font-bold text-2xl text-left">{title}</h1>
 	<p class="text-left p-1 bg-green-100 rounded-xl w-14 text-green-700 font-semibold">{value}</p>
-	<div id="wykres" class="flex flex-col max-h-screen">
+	<div class="flex flex-col max-h-screen">
 		<div class="flex flex-row items-end max-h-screen">
 			{#each metrics as bar}
-				<div class="flex flex-col align-middle mt-0">
-					<div
-						class="w-3 rounded-xl mx-2 {twMerge(bar.active ? positiveBarActiveClass : barColor)}"
-						style="height: {bar.gain}px"
-					></div>
-				</div>
+				<div
+					class="flex flex-col align-middle mt-0 w-3 rounded-xl mx-2 {twMerge(
+						bar.positiveActive ? positiveBarActiveClass : barColor
+					)}"
+					style="height: {bar.gain}px"
+				></div>
 			{/each}
 		</div>
-		<div class="flex flex-row items-start max-h-screen">
-			{#each metrics as bar}
-				<div class="flex flex-col align-middle mt-0">
+		{#if typeof metrics[0].loss === 'number'}
+			<div class="flex flex-row items-start max-h-screen">
+				{#each metrics as bar}
 					<div
-						class="w-3 rounded-xl mx-2 {twMerge(
-							bar.active ? negativeBarActiveClass : barColor
+						class="flex flex-col align-middle mt-0 w-3 rounded-xl mx-2 {twMerge(
+							bar.negativeActive ? negativeBarActiveClass : barColor
 						)} h-auto"
 						style="height: {bar.loss}px"
 					></div>
-				</div>
-			{/each}
-		</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </div>

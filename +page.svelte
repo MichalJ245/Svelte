@@ -4,35 +4,37 @@
 
 <Charts
 	metrics={[
-		{ gain: 35, active: false },
-		{ gain: 69, active: true },
-		{ gain: 12, active: true },
-		{ gain: 94, active: false },
-		{ gain: 49, active: false },
-		{ gain: 67, active: true },
-		{ gain: 18, active: true },
-		{ gain: 30, active: false }
+		{ gain: 35, positiveActive: false },
+		{ gain: 69, positiveActive: true },
+		{ gain: 12, positiveActive: true },
+		{ gain: 94, positiveActive: false },
+		{ gain: 49, positiveActive: false },
+		{ gain: 67, positiveActive: true },
+		{ gain: 18, positiveActive: true },
+		{ gain: 30, positiveActive: false }
 	]}
 	title="Engagement"
 	value="+46%"
 	positiveBarActiveClass="bg-yellow-500"
-	negativeBarActiveClass="bg-red-200"
+	negativeBarActiveClass="bg-red-800"
 	barColor="bg-gray-300"
+	rotateDegree={30}
 />
 <Charts
 	metrics={[
-		{ gain: 95, loss: 38, active: true },
-		{ gain: 34, loss: 29, active: true },
-		{ gain: 39, loss: 12, active: false },
-		{ gain: 84, loss: 18, active: true },
-		{ gain: 56, loss: 83, active: false },
-		{ gain: 84, loss: 11, active: true },
-		{ gain: 18, loss: 98, active: false },
-		{ gain: 60, loss: 67, active: false }
+		{ gain: 95, loss: 38, positiveActive: true, negativeActive: false },
+		{ gain: 34, loss: 29, positiveActive: true, negativeActive: false },
+		{ gain: 39, loss: 12, positiveActive: false, negativeActive: true },
+		{ gain: 84, loss: 18, positiveActive: true, negativeActive: true },
+		{ gain: 56, loss: 83, positiveActive: false, negativeActive: false },
+		{ gain: 84, loss: 11, positiveActive: true, negativeActive: true },
+		{ gain: 18, loss: 98, positiveActive: false, negativeActive: true },
+		{ gain: 60, loss: 67, positiveActive: false, negativeActive: false }
 	]}
 	title="Followers"
 	value="+25%"
 	positiveBarActiveClass="bg-green-600"
-	negativeBarActiveClass="bg-red-200"
+	negativeBarActiveClass="bg-red-400"
 	barColor="bg-gray-300"
+	rotateDegree={-30}
 />
