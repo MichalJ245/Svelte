@@ -1,1 +1,1 @@
-![słupki](https://github.com/user-attachments/assets/89ba5273-7abb-4f9d-ba87-4718b8dcb388)
+![słupki](https://github.com/user-attachments/assets/18d8327e-3644-46a1-881c-385af45a6951)
