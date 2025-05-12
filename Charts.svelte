@@ -1,27 +1,27 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
-	type Bar  = {
-		gain: number;
-		loss: number;
-		positiveActive: boolean;
-		negativeActive: boolean;
-		typeOfChart: 'followers';
-	}
-	|{
-		gain: number;
-		positiveActive: boolean;
-		typeOfChart: 'engagement';
-	};
-	let {
-		metrics,
+	const {
 		title,
 		value,
 		positiveBarActiveClass = 'bg-yellow-500',
 		negativeBarActiveClass = 'bg-red-200',
 		barColor,
-		rotateDegree = 0
-	}: {
-		metrics: Array<Bar>;
+		rotateDegree = 0,
+		type,
+		metrics,
+	}:{
+		type: 'followers';
+		metrics: Array<{gain: number; loss: number; positiveActive: boolean; negativeActive: boolean}>;
+		title: string;
+		value: string;
+		positiveBarActiveClass: string;
+		negativeBarActiveClass: string;
+		barColor: string;
+		rotateDegree?: number;
+	}
+	|{
+		type: 'engagement';
+		metrics: Array<{gain: number; positiveActive: boolean}>;
 		title: string;
 		value: string;
 		positiveBarActiveClass: string;
@@ -30,15 +30,12 @@
 		rotateDegree?: number;
 	} = $props();
 
+	//const propss: {type:"A", metrics: Array<{gain:number}>} | {type:"B", metrics: Array<{loss:number}>} = $props(); 
+
 	const foo = (param: { type: 'A'; value: number } | { type: 'B'; bar: string }) => {
 		if (param.type == 'A') {
 			param.value;
 		}
-	};
-	let checkNegative = (bar: Bar) => {
-		console.log(bar.typeOfChart == 'followers');
-		console.log(bar.gain);
-		return bar.typeOfChart === 'followers';
 	};
 </script>
 
@@ -60,7 +57,7 @@
 				></div>
 			{/each}
 		</div>
-		{#if metrics.every(checkNegative)}
+		{#if type==="followers"}
 			<div class="flex flex-row items-start max-h-screen">
 				{#each metrics as bar}
 					<div
