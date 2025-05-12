@@ -19,17 +19,18 @@
 	negativeBarActiveClass="bg-red-800"
 	barColor="bg-gray-300"
 	rotateDegree={30}
-	doNegativeValues={false}
+	type="engagement"
 />
 <Charts
+type="followers"
 	metrics={[
 		{ gain: 95, loss: 38, positiveActive: true, negativeActive: false },
 		{ gain: 34, loss: 29, positiveActive: true, negativeActive: false },
 		{ gain: 39, loss: 12, positiveActive: false, negativeActive: true },
-		{ gain: 84, loss: 3, positiveActive: true, negativeActive: false },
+		{ gain: 84, loss: 18, positiveActive: true, negativeActive: false },
 		{ gain: 56, loss: 83, positiveActive: false, negativeActive: false },
 		{ gain: 84, loss: 11, positiveActive: true, negativeActive: true },
-		{ gain: 18, loss: 5, positiveActive: false, negativeActive: true },
+		{ gain: 18, loss: 15, positiveActive: false, negativeActive: true },
 		{ gain: 60, loss: 67, positiveActive: false, negativeActive: false }
 	]}
 	title="Followers"
@@ -38,5 +39,4 @@
 	negativeBarActiveClass="bg-red-400"
 	barColor="bg-gray-300"
 	rotateDegree={-20}
-	doNegativeValues={true}
 />
