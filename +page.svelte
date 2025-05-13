@@ -12,8 +12,8 @@
 	function circleMove(button: boolean) {
 		return twMerge(circle, button ? 'translate-0' : 'translate-x-[18px]');
 	}
-	let title1 = $state("Engagement");
-	let title2 = $state("Followers");
+	let title1 = $state('Engagement');
+	let title2 = $state('Followers');
 </script>
 
 <Charts
@@ -36,14 +36,14 @@
 	rotateDegree={button1Active ? 10 : 20}
 />
 <div class="flex justify-center mb-20 flex">
-<p class="mx-4">Obórt</p>
-<button
-	aria-label="rotate"
-	onclick={() => (button1Active = !button1Active)}
-	class={getFrameStyle(button1Active)}><div class={circleMove(button1Active)}></div></button
->
-<p class="mx-4">Title:</p>
-<input type="text" bind:value={title1} class="border-1">
+	<p class="mx-4">Obórt</p>
+	<button
+		aria-label="rotate"
+		onclick={() => (button1Active = !button1Active)}
+		class={getFrameStyle(button1Active)}><div class={circleMove(button1Active)}></div></button
+	>
+	<p class="mx-4">Title:</p>
+	<input type="text" bind:value={title1} class="border-1" />
 </div>
 <Charts
 	metrics={[
@@ -65,12 +65,12 @@
 	rotateDegree={button2Active ? 10 : 20}
 />
 <div class="flex justify-center mb-20">
-<p class="mx-4">Obórt</p>
-<button
-	aria-label="rotate"
-	onclick={() => (button2Active = !button2Active)}
-	class={getFrameStyle(button2Active)}><div class={circleMove(button2Active)}></div></button
->
-<p class="mx-4">Title:</p>
-<input type="text" bind:value={title2} class="border-1">
+	<p class="mx-4">Obórt</p>
+	<button
+		aria-label="rotate"
+		onclick={() => (button2Active = !button2Active)}
+		class={getFrameStyle(button2Active)}><div class={circleMove(button2Active)}></div></button
+	>
+	<p class="mx-4">Title:</p>
+	<input type="text" bind:value={title2} class="border-1" />
 </div>
