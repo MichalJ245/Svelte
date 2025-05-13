@@ -6,37 +6,41 @@
 		positiveBarActiveClass = 'bg-yellow-500',
 		negativeBarActiveClass = 'bg-red-200',
 		barColor,
-		rotateDegree = 0,
 		type,
 		metrics,
-	}:{
-		type: 'followers';
-		metrics: Array<{gain: number; loss: number; positiveActive: boolean; negativeActive: boolean}>;
-		title: string;
-		value: string;
-		positiveBarActiveClass: string;
-		negativeBarActiveClass: string;
-		barColor: string;
-		rotateDegree?: number;
-	}
-	|{
-		type: 'engagement';
-		metrics: Array<{gain: number; positiveActive: boolean}>;
-		title: string;
-		value: string;
-		positiveBarActiveClass: string;
-		negativeBarActiveClass: string;
-		barColor: string;
-		rotateDegree?: number;
-	} = $props();
-
-	//const propss: {type:"A", metrics: Array<{gain:number}>} | {type:"B", metrics: Array<{loss:number}>} = $props(); 
-
-	const foo = (param: { type: 'A'; value: number } | { type: 'B'; bar: string }) => {
-		if (param.type == 'A') {
-			param.value;
-		}
-	};
+		rotateDegree
+	}:
+		| {
+				type: 'followers';
+				metrics: Array<{
+					gain: number;
+					loss: number;
+					positiveActive: boolean;
+					negativeActive: boolean;
+				}>;
+				title: string;
+				value: string;
+				positiveBarActiveClass: string;
+				negativeBarActiveClass: string;
+				barColor: string;
+				rotateDegree: number;
+		  }
+		| {
+				type: 'engagement';
+				metrics: Array<{ gain: number; positiveActive: boolean }>;
+				title: string;
+				value: string;
+				positiveBarActiveClass: string;
+				negativeBarActiveClass: string;
+				barColor: string;
+				rotateDegree: number;
+		  } = $props();
+const basicClasses = "mt-0 w-3 rounded-xl mx-2 h-auto";
+function ActiveBarColor(barNegative: boolean, colorActive: string)
+{
+	return twMerge(basicClasses,barNegative ? colorActive : barColor)
+}
+	
 </script>
 
 <div
@@ -47,27 +51,33 @@
 	<h1 class="font-bold text-2xl text-left">{title}</h1>
 	<p class="text-left p-1 bg-green-100 rounded-xl w-14 text-green-700 font-semibold">{value}</p>
 	<div class="flex flex-col max-h-screen">
-		<div class="flex flex-row items-end max-h-screen">
-			{#each metrics as bar}
-				<div
-					class="flex flex-col align-middle mt-0 w-3 rounded-xl mx-2 {twMerge(
-						bar.positiveActive ? positiveBarActiveClass : barColor
-					)}"
-					style="height: {bar.gain}px"
-				></div>
-			{/each}
-		</div>
-		{#if type==="followers"}
+		{#if type === 'followers'}
+			<div class="flex flex-row items-end max-h-screen">
+				{#each metrics as bar}
+					<div
+						class={ActiveBarColor(bar.positiveActive, positiveBarActiveClass)}
+						style="height: {bar.gain}px"
+					></div>
+				{/each}
+			</div>
 			<div class="flex flex-row items-start max-h-screen">
 				{#each metrics as bar}
 					<div
-						class="mt-0 w-3 rounded-xl mx-2 {twMerge(
-							bar.negativeActive ? negativeBarActiveClass : barColor
-						)} h-auto"
+						class={ActiveBarColor(bar.negativeActive, negativeBarActiveClass)}
 						style="height: {bar.loss}px"
+					></div>
+				{/each}
+			</div>
+		{:else}
+			<div class="flex flex-row items-end max-h-screen">
+				{#each metrics as bar}
+					<div
+						class={ActiveBarColor(bar.positiveActive, positiveBarActiveClass)}
+						style="height: {bar.gain}px"
 					></div>
 				{/each}
 			</div>
 		{/if}
 	</div>
+	
 </div>
