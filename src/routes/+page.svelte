@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { twMerge } from 'tailwind-merge';
+	import { twMerge } from 'tailwind-merge/es5';
 	import Charts from './Charts.svelte';
 	let button1Active = $state(true);
 	let button2Active = $state(true);
