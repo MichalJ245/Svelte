@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { twMerge } from 'tailwind-merge/es5';
+	import { twMerge } from 'tailwind-merge';
 	const {
 		title,
 		value,
